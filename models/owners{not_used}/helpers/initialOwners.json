@@ -1,0 +1,18 @@
+[
+  {
+    "firstName": "Alon",
+    "lastName": "Malimsky",
+    "phone": "0533303677",
+    "email": "alonmalichi@gmail.com",
+    "password": "Aa123456!",
+    "caravanCatalog": [""]
+  },
+  {
+    "firstName": "Yael",
+    "lastName": "Cohen",
+    "phone": "0586640158",
+    "email": "alonmalichi@gmail.com",
+    "password": "Aa123456!",
+    "caravanCatalog": [""]
+  }
+]

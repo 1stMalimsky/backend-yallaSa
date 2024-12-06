@@ -1,0 +1,51 @@
+[
+  {
+    "userId": 12,
+    "reservationId": "6483c1a5e245d9e2a1e91731",
+    "rating": 3,
+    "comment": "Spacious and well-equipped. Perfect for a family trip!"
+  },
+
+  {
+    "userId": 13,
+    "reservationId": "6483c1a5e245d9e2a1e91732",
+    "rating": 5,
+    "comment": "Loved the location and amenities. Highly recommended!"
+  },
+  {
+    "userId": 12,
+    "reservationId": "6483c1a5e245d9e2a1e91732",
+    "rating": 3,
+    "comment": "Good caravan, but a bit cramped for more than two people."
+  },
+  {
+    "userId": 13,
+    "reservationId": "6483c1a5e245d9e2a1e91733",
+    "rating": 2,
+    "comment": "Nice and cozy, great for a couple\u2019s retreat."
+  },
+  {
+    "userId": 12,
+    "reservationId": "6483c1a5e245d9e2a1e91733",
+    "rating": 5,
+    "comment": "Amazing experience! Will definitely book again."
+  },
+  {
+    "userId": 13,
+    "reservationId": "6483c1a5e245d9e2a1e91734",
+    "rating": 4,
+    "comment": "Well-maintained caravan with all necessary amenities."
+  },
+  {
+    "userId": 13,
+    "reservationId": "6483c1a5e245d9e2a1e91734",
+    "rating": 3,
+    "comment": "Perfect for a weekend getaway! Loved the comfort."
+  },
+  {
+    "userId": 12,
+    "reservationId": "6483c1a5e245d9e2a1e91734",
+    "rating": 4,
+    "comment": "Great value for the price. Highly recommended."
+  }
+]

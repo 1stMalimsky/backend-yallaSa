@@ -1,0 +1,41 @@
+[
+  {
+    "_id": "11",
+    "fullName": "Alon Malimsky",
+    "phone": "0533303677",
+    "email": "alonmalichi@gmail.com",
+    "password": "Aa123456!",
+    "license": "",
+    "isOwner": true,
+    "caravanIds": ["1111", "1112"],
+    "ownerReservations": [
+      "6483c1a5e245d9e2a1e91721",
+      "6483c1a5e245d9e2a1e91722"
+    ],
+    "userReservations": ["6483c1a5e245d9e2a1e91731", "6483c1a5e245d9e2a1e91732"]
+  },
+  {
+    "_id": "12",
+    "fullName": "Shlomo Levi",
+    "phone": "0541234567",
+    "email": "shlomo@gmail.com",
+    "password": "Aa123456!",
+    "license": "AB12345",
+    "isOwner": false,
+    "caravanIds": [],
+    "ownerReservations": [],
+    "userReservations": ["6483c1a5e245d9e2a1e91733"]
+  },
+  {
+    "_id": "13",
+    "fullName": "Yael Cohen",
+    "phone": "0527654321",
+    "email": "yael@gmail.com",
+    "password": "Aa123456!",
+    "license": "XY67890",
+    "isOwner": true,
+    "caravanIds": ["1113", "1114"],
+    "ownerReservations": ["6483c1a5e245d9e2a1e91723"],
+    "userReservations": ["6483c1a5e245d9e2a1e91734"]
+  }
+]

@@ -1,0 +1,119 @@
+[{
+  "_id": "6483c1a5e245d9e2a1e91731",
+  "userId": "12",
+  "caravanId": "1111",
+  "dates": {
+    "month": "January",
+    "year": 2024,
+    "start": 1704067200,
+    "end": 1704508800,
+    "numOfDays": 5,
+    "_id": {
+      "$oid": "674ed4e768ecc1f92461ddaf"
+    }
+  },
+  "price": {
+    "grandTotal": 1250,
+    "totalExtras": 100,
+    "insurance": 50,
+    "cancelation": 20,
+    "_id": {
+      "$oid": "674ed4e768ecc1f92461ddb0"
+    }
+  },
+  "extras": [
+    "WiFi",
+    "Portable Grill"
+  ],
+  "insuranceSelected": "premium",
+  "cancelationPolicy": "flexible",
+  "__v": 0
+},
+{
+  "_id": "6483c1a5e245d9e2a1e91732",
+  "userId": "12",
+  "caravanId": "1112",
+  "dates": {
+    "month": "February",
+    "year": 2024,
+    "start": 1704844800,
+    "end": 1705017600,
+    "numOfDays": 2,
+    "_id": {
+      "$oid": "674ed4e768ecc1f92461ddb1"
+    }
+  },
+  "price": {
+    "grandTotal": 500,
+    "totalExtras": 50,
+    "insurance": 25,
+    "cancelation": 10,
+    "_id": {
+      "$oid": "674ed4e768ecc1f92461ddb2"
+    }
+  },
+  "extras": [
+    "WiFi"
+  ],
+  "insuranceSelected": "basic",
+  "cancelationPolicy": "basic",
+  "__v": 0
+},
+{
+  "_id": "6483c1a5e245d9e2a1e91733",
+  "userId": "12",
+  "caravanId": "1113",
+  "dates": {
+    "month": "March",
+    "year": 2024,
+    "start": 1706592000,
+    "end": 1706764800,
+    "numOfDays": 2,
+    "_id": {
+      "$oid": "674ed4e768ecc1f92461ddb3"
+    }
+  },
+  "price": {
+    "grandTotal": 450,
+    "totalExtras": 0,
+    "insurance": 25,
+    "cancelation": 15,
+    "_id": {
+      "$oid": "674ed4e768ecc1f92461ddb4"
+    }
+  },
+  "extras": [],
+  "insuranceSelected": "basic",
+  "cancelationPolicy": "basic",
+  "__v": 0
+},
+{
+  "_id": "6483c1a5e245d9e2a1e91734",
+  "userId": "13",
+  "caravanId": "1114",
+  "dates": {
+    "month": "April",
+    "year": 2024,
+    "start": 1708483200,
+    "end": 1708656000,
+    "numOfDays": 2,
+    "_id": {
+      "$oid": "674ed4e768ecc1f92461ddb5"
+    }
+  },
+  "price": {
+    "grandTotal": 600,
+    "totalExtras": 50,
+    "insurance": 30,
+    "cancelation": 20,
+    "_id": {
+      "$oid": "674ed4e768ecc1f92461ddb6"
+    }
+  },
+  "extras": [
+    "Portable Grill"
+  ],
+  "insuranceSelected": "premium",
+  "cancelationPolicy": "flexible",
+  "__v": 0
+}]
