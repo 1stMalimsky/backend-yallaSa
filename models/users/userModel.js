@@ -2,12 +2,7 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
-    /* TEMPORARY */
-    _id: {
-      type: Number,
-      required: true,
-    },
-    /* TEMPORARY */
+    isAdmin: { type: Boolean },
     fullName: {
       type: String,
       required: true,
@@ -32,19 +27,12 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    /* TEMPORARY */
     caravanIds: [
-      {
-        type: Number,
-        ref: "Caravan",
-      },
-    ],
-    /* caravanIds: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Caravan",
       },
-    ], */
+    ],
     ownerReservations: [
       {
         type: mongoose.Schema.Types.ObjectId,

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const reservedDatesSchema = new mongoose.Schema({
-  month: { type: String, required: true },
+  month: { type: Number, required: true },
   year: { type: Number, required: true },
   start: { type: Number, required: true },
   end: { type: Number, required: true },
@@ -17,11 +17,12 @@ const priceDetailsSchema = new mongoose.Schema({
 
 const resrvationSchema = new mongoose.Schema(
   {
-    /* TEMPORARY */
-    _id: { type: String, required: true },
-    /* TEMPORARY */
     userId: { type: String, ref: "User", required: true },
-    caravanId: { type: String, ref: "Carvan", required: true },
+    caravanId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Caravan",
+      required: true,
+    },
     dates: { type: reservedDatesSchema },
     price: { type: priceDetailsSchema },
     extras: { type: [String], default: [] },

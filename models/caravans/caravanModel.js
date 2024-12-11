@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Reservation = require("../reservations/reservationModel");
 
 const resrevationDateSchema = new mongoose.Schema({
   start: {
@@ -41,13 +42,12 @@ const caravanSchema = new mongoose.Schema(
       street: { type: String },
       gpsData: { type: [Number] },
     },
-    bookedDates: {
-      type: Map,
-      of: {
-        type: Map,
-        of: [resrevationDateSchema],
+    reservations: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Reservation",
       },
-    },
+    ],
   },
   { timestamps: true }
 );

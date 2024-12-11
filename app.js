@@ -6,10 +6,11 @@ var logger = require("morgan");
 const connectDB = require("./config/db");
 const apiRouter = require("./routes/api");
 const { createInitialData } = require("./models/initializeData");
+const cors = require("cors");
 var app = express();
 
+app.use(cors({ origin: "http://localhost:3000" }));
 connectDB();
-
 createInitialData();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -29,8 +30,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  console.log("404 error");
+app.use(function (err, req, res, next) {
+  console.log("404 error here");
   next(createError(404));
 });
 

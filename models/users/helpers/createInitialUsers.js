@@ -1,15 +1,16 @@
 const initialUsers = require("./initialUsers");
 const User = require("../userModel");
+const chalk = require("chalk");
 
 const createUsers = async () => {
   try {
     const usersCreated = await User.find();
     if (usersCreated.length > 0) {
-      console.log("users already created");
+      console.log(chalk.blue.italic("users already created"));
       return;
     }
     const result = await User.insertMany(initialUsers);
-    return console.log("users created");
+    return console.log(chalk.green("users created"));
   } catch (error) {
     console.log(error);
   }

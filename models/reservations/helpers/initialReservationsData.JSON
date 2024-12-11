@@ -82,5 +82,25 @@
     "extras": ["Portable Grill"],
     "insuranceSelected": "premium",
     "cancelationPolicy": "flexible"
+  },
+  {
+    "userId": "12",
+    "caravanId": "1111",
+    "dates": {
+      "month": "April",
+      "year": 2024,
+      "start": 1708484000,
+      "end": 1708657000,
+      "numOfDays": 2
+    },
+    "price": {
+      "grandTotal": 600,
+      "totalExtras": 50,
+      "insurance": 30,
+      "cancelation": 20
+    },
+    "extras": ["Portable Grill"],
+    "insuranceSelected": "premium",
+    "cancelationPolicy": "basic"
   }
 ]

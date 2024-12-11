@@ -3,7 +3,7 @@
   "fullName": "Alon Malimsky",
   "email": "alonmalichi@gmail.com",
   "phone": "0533303677",
-  "password": "Aa123456!",
+  "password": "$2a$10$cfI4Ndf8orYvZvydx4qw9egLjp2rrdWIHz31oG3VdU5mW2n2K6ETW",
   "license": "",
   "isOwner": true,
   "caravanIds": [
@@ -34,15 +34,16 @@
     "$date": "2024-12-03T09:26:23.935Z"
   },
   "updatedAt": {
-    "$date": "2024-12-03T09:26:23.935Z"
-  }
+    "$date": "2024-12-08T09:49:08.887Z"
+  },
+  "isAdmin": true
 },
 {
   "_id": 12,
   "fullName": "Shlomo Levi",
   "email": "shlomo@gmail.com",
   "phone": "0541234567",
-  "password": "Aa123456!",
+  "password": "$2a$10$YqYE23w1jmuMmhUOJQLGue/I1749JuTqY3dD1tHrKUTVOQZ0JOubS",
   "license": "AB12345",
   "isOwner": false,
   "caravanIds": [],
@@ -60,15 +61,16 @@
     "$date": "2024-12-03T09:26:23.935Z"
   },
   "updatedAt": {
-    "$date": "2024-12-03T09:26:23.935Z"
-  }
+    "$date": "2024-12-08T09:49:08.892Z"
+  },
+  "isAdmin": false
 },
 {
   "_id": 13,
   "fullName": "Yael Cohen",
   "email": "yael@gmail.com",
   "phone": "0527654321",
-  "password": "Aa123456!",
+  "password": "$2a$10$gXE3OeJmWdvq5G/QMIonmeY7wWwYaGzoKlwgPGBwc8zpTxqj8Quga",
   "license": "XY67890",
   "isOwner": true,
   "caravanIds": [
@@ -93,6 +95,7 @@
     "$date": "2024-12-03T09:26:23.935Z"
   },
   "updatedAt": {
-    "$date": "2024-12-03T09:26:23.935Z"
-  }
+    "$date": "2024-12-08T09:49:08.896Z"
+  },
+  "isAdmin": false
 }]

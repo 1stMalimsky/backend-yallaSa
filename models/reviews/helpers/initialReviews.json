@@ -47,5 +47,11 @@
     "reservationId": "6483c1a5e245d9e2a1e91734",
     "rating": 4,
     "comment": "Great value for the price. Highly recommended."
+  },
+  {
+    "userId": 12,
+    "reservationId": "6483c1a5e245d9e2a1e91774",
+    "rating": 4,
+    "comment": "Great value for the price. Highly recommended."
   }
 ]

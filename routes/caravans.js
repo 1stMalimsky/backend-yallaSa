@@ -1,11 +1,7 @@
 var express = require("express");
-const {
-  userService,
-  caravanService,
-  reservationService,
-  reviewService,
-} = require("../models/serviceIndex");
-const Caravan = require("../models/caravans/caravanModel");
+const { caravanService } = require("../models/serviceIndex");
+const mongoose = require("mongoose");
+const reservationService = require("../models/reservations/reservationService");
 const router = express.Router();
 const chalk = require("chalk");
 
@@ -86,6 +82,24 @@ router.delete("/:caravanId", async (req, res) => {
     res
       .status(500)
       .json({ message: "Delete caravan Error", error: error.message });
+  }
+});
+
+/* SEARCH FOR AVAILABLE CARAVANS */
+router.get("/searchbydate/:start/:end", async (req, res) => {
+  try {
+    const start = req.params.start;
+    const end = req.params.end;
+    const availableCaravans = await caravanService.searchAvailabilityByDate(
+      start,
+      end
+    );
+    console.log("available caravans", availableCaravans);
+    return res.status(200).json({ caravans: availableCaravans });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Search caravans Error", error: error.message });
   }
 });
 
