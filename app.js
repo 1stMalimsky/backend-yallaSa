@@ -3,11 +3,12 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const cors = require("cors");
 const connectDB = require("./config/db");
 const apiRouter = require("./routes/api");
 const { createInitialData } = require("./models/initializeData");
-const cors = require("cors");
-var app = express();
+
+const app = express();
 
 app.use(cors({ origin: "http://localhost:3000" }));
 connectDB();

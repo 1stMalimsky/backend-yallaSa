@@ -31,11 +31,17 @@ const caravanSchema = new mongoose.Schema(
     pricePerNight: { type: Number, required: true },
     numOfBeds: { type: Number },
     numOfSeats: { type: Number },
+    measurements: {
+      length: { type: Number },
+      width: { type: Number },
+      weight: { type: String },
+    },
     features: {
       hasAC: { type: Boolean, default: false },
       hasTV: { type: Boolean, default: false },
       shabbatSystem: { type: Boolean, default: false },
       kosherCaravan: { type: Boolean, default: false },
+      kitchen: { type: Boolean, default: false },
     },
     locationDetails: {
       city: { type: String },

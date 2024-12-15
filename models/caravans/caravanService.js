@@ -1,6 +1,10 @@
 const Caravan = require("./caravanModel");
-const reservationService = require("../reservations/reservationService");
+const {
+  validateSearch,
+} = require("../../validation/serviceValidation/searchValidation");
+const Reservation = require("../reservations/reservationModel");
 const dayjs = require("dayjs");
+const chalk = require("chalk");
 
 const createCaravan = (caravanInput) => {
   const caravan = new Caravan(caravanInput);
@@ -25,18 +29,18 @@ const deleteCaravan = (caravanId) => {
   return Caravan.deleteOne({ _id: caravanId });
 };
 
-const searchAvailabilityByDate = async (
-  queryStart,
-  queryEnd,
-  page = 1,
-  limit = 2
-) => {
+const searchAvailabilityByDate = async (queryStart, queryEnd, page, limit) => {
   const startDate = dayjs.unix(queryStart);
-  const queryMonth = startDate.month();
+  const queryMonth = startDate.month() + 1;
   const queryYear = startDate.year();
+  let excludedCaravanIds = [];
   const skip = (page - 1) * limit;
-  const excludedCaravanIds = [];
 
+  console.log("year", queryYear, "month", queryMonth);
+
+  if (!validateSearch({ start: queryStart, end: queryEnd, page, limit })) {
+    throw new Error("Invalid search parameters");
+  }
   try {
     const overlappingReservations = await Reservation.find({
       $and: [
@@ -58,6 +62,7 @@ const searchAvailabilityByDate = async (
         (reservation) => reservation.caravanId
       );
     }
+    console.log(chalk.bgRed.bold("excludedCaravanIds"), excludedCaravanIds);
 
     const availableCaravans = await Caravan.find({
       _id: { $nin: excludedCaravanIds },
@@ -68,15 +73,17 @@ const searchAvailabilityByDate = async (
     const totalAvailable = await Caravan.countDocuments({
       _id: { $nin: excludedCaravanIds },
     });
-    return availableCaravans;
-    /* return {
+    return {
       caravans: availableCaravans,
       availableCaravans: totalAvailable,
       page,
       totalPages: Math.ceil(totalAvailable / limit),
-    }; */
+    };
   } catch (error) {
     console.log("search for caravan error", error);
+    res
+      .status(500)
+      .json({ message: "searchAvailablilityByDate error", error: error });
   }
 };
 

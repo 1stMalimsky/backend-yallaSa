@@ -15,18 +15,23 @@ const loggedInCheck = async (req, res, next) => {
   }
 };
 
-const checkCredentials = (needAdmin) => {
+const checkCredentials = (needAdmin, needOwner) => {
   return async (req, res, next) => {
     try {
-      if (needAdmin && req.tokenPayload.isAdmin && needAdmin === true) {
+      if (needAdmin && req.tokenPayload.isAdmin) {
+        return next();
+      }
+      if (needOwner && req.tokenPayload.isOwner) {
         return next();
       } else
         res
-          .status(500)
+          .status(401)
           .json({ message: "you don't have the right credentials" });
     } catch (err) {
       console.log("userAuthMW response", err);
-      res.status(400).json(err);
+      res
+        .status(400)
+        .json({ message: "Error checking credentials.", error: err });
     }
   };
 };

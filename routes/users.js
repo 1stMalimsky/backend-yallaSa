@@ -6,66 +6,36 @@ const User = require("../models/users/userModel");
 const chalk = require("chalk");
 const router = express.Router();
 const { validateLoginSchema } = require("../validation/joi/loginValidation");
+const normalizeUser = require("../utils/normalize/normalizeUser");
+const { validateUser } = require("../validation/joi/registerUserValidation");
+const { loggedInCheck } = require("./helpers/middleware");
 
 /* CREATE USER */
 
 router.post("/register", async (req, res) => {
   try {
-    const newUser = await userService.registerUser(req.body);
+    const joiResponse = validateUser(req.body);
+    if (joiResponse && joiResponse.error) {
+      console.log("Register joiRespone", joiResponse.error);
+      return res
+        .status(400)
+        .json({ message: joiResponse.error.message || err });
+    }
+    const userEmail = await userService.getUserByEmail(req.body.email);
+    if (userEmail) {
+      return res
+        .status(400)
+        .json({ message: "כתובת מייל קיימת. אנא הרשם עם כתובת אחרת" });
+    }
+    const normalizedUser = await normalizeUser(req.body);
+    console.log("normalizedUser", normalizedUser);
 
+    const newUser = await userService.registerUser(normalizedUser);
     res
       .status(201)
       .json({ message: "User created successfully", user: newUser });
   } catch (error) {
     res.status(500).json({ message: error.message });
-  }
-});
-
-/* HASH PASSWORDS */
-
-const changePassword = async (userArray) => {
-  const newArr = await Promise.all(
-    userArray.map(async (user) => {
-      const plainUser = user.toObject();
-      return {
-        ...plainUser,
-        password: await hashService.generateHash(user.password),
-      };
-    })
-  );
-  return newArr;
-};
-
-const multipleUpdate = async (usersArr) => {
-  try {
-    const updatedArr = await changePassword(usersArr);
-    //console.log("updatedArr", updatedArr);
-    for (const user of updatedArr) {
-      try {
-        console.log(chalk.black.bgWhite("updating user", user._id));
-
-        await userService.updateUser(user._id, { password: user.password });
-        console.log("multiple update success");
-      } catch (err) {
-        console.log("multiple update error", err);
-      }
-    }
-  } catch (err) {
-    console.log(chalk.red.bold("multipleUpdate err", err));
-  }
-};
-
-router.put("/hashpasswords", async (req, res) => {
-  try {
-    const allUsers = await userService.getAllUsers();
-    if (!allUsers) {
-      res.status(400).json("no users found");
-    }
-    const newUsers = await multipleUpdate(allUsers);
-    res.status(200).json({ message: "success", info: newUsers });
-  } catch (err) {
-    console.log(chalk.red.bold("hashPasswords error"));
-    res.status(400).send("error");
   }
 });
 
@@ -131,10 +101,12 @@ router.get("/:id", async (req, res) => {
 });
 
 /* UPDATE USER */
-router.put("/:id", async (req, res) => {
+router.patch("/update/:id", loggedInCheck, async (req, res) => {
+  if (req.tokenPayload.userId !== req.params.id) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
   try {
     const updatedUser = await userService.updateUser(req.params.id, req.body);
-
     if (!updatedUser) {
       return res.status(404).json({ message: "User not found" });
     }

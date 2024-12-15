@@ -1,50 +1,31 @@
 const Joi = require("joi");
 
-const userValidationSchema = Joi.object({
-  _id: Joi.number().required().label("User ID"), // TEMPORARY
-  isAdmin: Joi.boolean().optional().label("Is Admin"),
+const registerUserValidationSchema = Joi.object({
   fullName: Joi.string().required().min(3).max(100).label("Full Name"),
-  email: Joi.string().email().required().label("Email"),
-  phone: Joi.string()
-    .pattern(/^\+?[1-9]\d{1,14}$/)
+  email: Joi.string()
+    .email({
+      tlds: { allow: true },
+      minDomainSegments: 2,
+      allowUnicode: false,
+    })
     .required()
-    .label("Phone"), // E.164 format
+    .messages({
+      "string.email": "אנא הכנס כתובת מייל תקינה",
+      "string.empty": "אנא הכנס כתובת מייל",
+      "any.required": "אנא הכנס כתובת מייל",
+    }),
+  phone: Joi.string()
+    .pattern(/0[0-9]{1,2}\-?\s?[0-9]{3}\s?[0-9]{4}/)
+    .required()
+    .label("Phone"),
   password: Joi.string().required().min(6).max(128).label("Password"),
   license: Joi.string().optional().allow("").label("License"),
-  isOwner: Joi.boolean().default(false).label("Is Owner"),
-  caravanIds: Joi.array()
-    .items(Joi.number().label("Caravan ID")) // TEMPORARY
-    .when("isOwner", {
-      is: true,
-      then: Joi.required(),
-      otherwise: Joi.forbidden(),
-    })
-    .label("Caravan IDs"),
-  ownerReservations: Joi.array()
-    .items(
-      Joi.string()
-        .pattern(/^[a-fA-F0-9]{24}$/)
-        .label("Reservation ID")
-    )
-    .when("isOwner", {
-      is: true,
-      then: Joi.required(),
-      otherwise: Joi.forbidden(),
-    })
-    .label("Owner Reservations"),
-  userReservations: Joi.array()
-    .items(
-      Joi.string()
-        .pattern(/^[a-fA-F0-9]{24}$/)
-        .label("Reservation ID")
-    )
-    .optional()
-    .label("User Reservations"),
 });
 
-// Validation function
-const validateUser = (user) => {
-  return userValidationSchema.validate(user, { abortEarly: false });
+const validateUser = (userInput) => {
+  return registerUserValidationSchema.validate(userInput, {
+    abortEarly: false,
+  });
 };
 
-module.exports = validateUser;
+module.exports = { validateUser };
