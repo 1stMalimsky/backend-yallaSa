@@ -21,7 +21,9 @@ const userSchema = new mongoose.Schema(
     },
 
     license: {
-      type: String,
+      filename: { type: String, default: "" },
+      path: { type: String, default: "" },
+      contentType: { type: String, default: "" },
     },
     isOwner: {
       type: Boolean,

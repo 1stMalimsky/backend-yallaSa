@@ -13,9 +13,6 @@ const app = express();
 app.use(cors({ origin: "http://localhost:3000" }));
 connectDB();
 createInitialData();
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -29,6 +26,14 @@ app.use("/api", apiRouter);
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use((req, res, next) => {
+  res.setHeader("Content-Type", "text/html; charset=utf-8");
+  next();
+});
+app.use(express.json({ limit: "50mb" })); // For JSON payloads
+app.use(
+  express.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 })
+);
 
 // catch 404 and forward to error handler
 app.use(function (err, req, res, next) {

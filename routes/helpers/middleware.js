@@ -39,7 +39,7 @@ const checkCredentials = (needAdmin, needOwner) => {
 const compareUserToken = async (req, res, next) => {
   try {
     const userId = req.tokenPayload.userId;
-    const userToEdit = req.body._id;
+    const userToEdit = req.body._id || req.params.id;
     if (!userToEdit) {
       return res.status(401).json({ message: "No user to edit" });
     }

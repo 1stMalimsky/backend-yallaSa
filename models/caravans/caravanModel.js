@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Reservation = require("../reservations/reservationModel");
+const { required } = require("joi");
 
 const resrevationDateSchema = new mongoose.Schema({
   start: {
@@ -54,6 +55,11 @@ const caravanSchema = new mongoose.Schema(
         ref: "Reservation",
       },
     ],
+    licenseInsurance: {
+      mandIns: { type: String, default: "" },
+      thirdPartyIns: { type: String, default: "" },
+      vehicleLicense: { type: String, default: "" },
+    },
   },
   { timestamps: true }
 );

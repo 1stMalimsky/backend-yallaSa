@@ -42,7 +42,7 @@ router.get(
 );
 
 /* GET CARAVAN BY ID */
-router.get("/:caravanId", loggedInCheck, async (req, res) => {
+router.get("/:caravanId", async (req, res) => {
   try {
     const foundCaravan = await caravanService.getCaravanById(
       req.params.caravanId

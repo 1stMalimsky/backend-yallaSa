@@ -7,6 +7,11 @@ const normalizeUser = async (user) => {
     password: hashedPassword,
     isAdmin: false,
     isOwner: false,
+    license: {
+      filename: user.license.filename || null,
+      path: user.license.path || null,
+      contentType: user.license.contentType || null,
+    },
   };
 };
 
