@@ -14,6 +14,10 @@ const caravanImageSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
     caravanId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Caravan",

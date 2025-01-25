@@ -12,17 +12,26 @@ const app = express();
 
 app.use(cors({ origin: "http://localhost:3000" }));
 connectDB();
-createInitialData();
+//createInitialData();
 
 app.use(logger("dev"));
-app.use(express.json());
 
 /*  Placeholder route for testing*/
 
 app.get("/", (req, res) => {
   res.send("server is running");
 });
+app.use(express.json());
 app.use("/api", apiRouter);
+
+/* TEST */
+app.post("/api/test", (req, res) => {
+  console.log("req.body here", req.body);
+
+  res.send({ message: req.body });
+});
+/* TEST */
+
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
@@ -30,26 +39,23 @@ app.use((req, res, next) => {
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   next();
 });
-app.use(express.json({ limit: "50mb" })); // For JSON payloads
-app.use(
-  express.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 })
-);
+app.use(express.json({ limit: "50mb" })); // For parsing application/json
+app.use(express.urlencoded({ extended: true, limit: "50mb" })); // For parsing application/x-www-form-urlencoded
 
 // catch 404 and forward to error handler
-app.use(function (err, req, res, next) {
-  console.log("404 error here");
+app.use(function (req, res, next) {
+  console.log("General 404 error here");
   next(createError(404));
 });
 
 // error handler
 app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+  res.status(err.status || 500).json({
+    error: {
+      message: err.message,
+      status: err.status,
+    },
+  });
 });
 
 module.exports = app;

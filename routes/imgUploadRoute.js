@@ -19,75 +19,118 @@ const upload = multer({
     cb(null, true);
   },
 }).fields([
-  { name: "licenseImage", maxCount: 1 },
+  { name: "licenseImages", maxCount: 3 },
   { name: "caravanImages", maxCount: 5 },
 ]);
 
 /* UPLOAD IMAGE */
+
 router.post(
-  "/uploadimage/:id",
+  "/uploadimage/:contentType/:id/:caravanId",
   loggedInCheck,
   compareUserToken,
   upload,
   async (req, res) => {
+    let contentType = req.params.contentType;
+    let caravanId = req.params.caravanId;
+    let userId = req.params.id;
     try {
-      if (req.files.licenseImage) {
-        console.log("licenseImage Data:", req.files.licenseImage[0]);
-      }
-      const userId = req.tokenPayload.userId;
-      let savedCaravans = [];
+      console.log("async contentType", contentType);
+      if (
+        contentType === "caravans" &&
+        req.files.caravanImages &&
+        req.files.caravanImages.length
+      ) {
+        const image = req.files.caravanImages[0];
+        const caravanImageData = {
+          filename: image.originalname,
+          path: `data:${image.mimetype};base64,${image.buffer.toString(
+            "base64"
+          )}`,
+          contentType: image.mimetype,
+          userId: new mongoose.Types.ObjectId(userId),
+          caravanId: new mongoose.Types.ObjectId(caravanId),
+        };
 
-      if (req.files.licenseImage) {
-        console.log("Uploading license");
-        const licenseImage = req.files.licenseImage[0];
+        const newCaravanImage = await CaravanImage.create(caravanImageData);
+        if (newCaravanImage) {
+          res.status(200).json(newCaravanImage);
+        }
+      }
+      if (
+        contentType === "license" /* &&
+        req.files.licenseImage &&
+        req.files.licenseImage.length */
+      ) {
+        console.log("here");
+        const licenseImage = req.files.licenseImages[0];
         const licenseImageData = {
           filename: licenseImage.originalname,
           path: `data:${
             licenseImage.mimetype
           };base64,${licenseImage.buffer.toString("base64")}`,
           contentType: licenseImage.mimetype,
+          userId: new mongoose.Types.ObjectId(userId),
+          caravanId: new mongoose.Types.ObjectId(caravanId),
         };
-        const updatedLicense = await userServiceModel.updateUser(userId, {
-          $set: {
-            license: licenseImageData,
-          },
-        });
-        console.log("here", updatedLicense.license.filename);
-        res.status(200).json({
-          message: "Files uploaded successfully",
-          license: updatedLicense.license,
-        });
+        const licenseImg = await LicenseImage.create(licenseImageData);
+        if (licenseImg) {
+          res.status(200).json({
+            message: "license File uploaded successfully",
+            license: licenseImg,
+          });
+        } else return res.status(400).json({ error: "Error uploading files." });
       }
-
-      if (req.files.caravanImages && req.files.caravanImages.length) {
-        console.log("Uploading caravan images");
-        for (let image of req.files.caravanImages) {
-          const caravanImageData = {
-            filename: image.originalname,
-            path: `data:${image.mimetype};base64,${image.buffer.toString(
-              "base64"
-            )}`,
-            contentType: image.mimetype,
-            userId: userId, // Assuming you want to link these to the user or a specific caravan
-          };
-          const savedCaravanImage = await CaravanImage.create(caravanImageData);
-          savedCaravans.push(savedCaravanImage);
-        }
-        res.status(200).json({
-          message: "Files uploaded successfully",
-          caravanImages: savedCaravans,
-        });
-      } else if (!req.files.licenseImage) {
-        res.status(400).json({ message: "No images provided" });
-      }
+      console.log("nowhereLand");
     } catch (error) {
       console.error("Upload error:", error);
-      res.status(500).json({ error: "Error uploading files." });
+      res.status(500).json({ message: "Error uploading files.", error: error });
     }
   }
 );
 
-/* DELETE IMAGE */
+/* DELETE CARAVAN IMAGE */
+router.delete(
+  "/removeimage/:collectionType/:id/:imageId/",
+  loggedInCheck,
+  compareUserToken,
+  async (req, res) => {
+    try {
+      let userId = req.params.id;
+      let imageId = req.params.imageId;
+      let collectionType = req.params.collectionType;
+
+      if (collectionType === "caravans") {
+        const deletedCaravanImage = await CaravanImage.findByIdAndDelete(
+          imageId
+        );
+        if (!deletedCaravanImage) {
+          return res.status(404).json({ message: "Caravan image not found" });
+        }
+        res.status(200).json({
+          message: "Caravan image deleted successfully",
+          caravanImage: deletedCaravanImage,
+        });
+      }
+      if (collectionType === "license") {
+        const deletedLicenseImage = await LicenseImage.findByIdAndDelete(
+          imageId
+        );
+        if (!deletedLicenseImage) {
+          return res.status(404).json({ message: "License image not found" });
+        }
+        res.status(200).json({
+          message: "License image deleted successfully",
+          licenseImage: deletedLicenseImage,
+        });
+      }
+    } catch (error) {
+      console.error("Error deleting license/caravan image:", error);
+      res.status(500).json({ error: "Error deleting caravan image" });
+    }
+  }
+);
+/* DELETE LICENSE IMAGE */
 router.patch(
   "/resetlicense/:id",
   loggedInCheck,

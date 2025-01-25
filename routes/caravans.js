@@ -5,6 +5,8 @@ const reservationService = require("../models/reservations/reservationService");
 const router = express.Router();
 const chalk = require("chalk");
 const { loggedInCheck, checkCredentials } = require("./helpers/middleware");
+const { normalizeCaravan } = require("../utils/normalize/normalizeCaravan");
+const userService = require("../models/users/userService");
 
 /* CREATE CARAVAN */
 
@@ -14,8 +16,21 @@ router.post(
   checkCredentials((needAdmin = false), (needOwner = true)),
   async (req, res) => {
     try {
-      const newCaravan = await caravanService.createCaravan(req.body);
-      res.status(201).json({ message: "Caravan created successfully" });
+      const normalizedCaravan = normalizeCaravan(req.body);
+      console.log("normalizedCaravan", normalizedCaravan);
+
+      const newCaravan = await caravanService.createCaravan(normalizedCaravan);
+      if (newCaravan) {
+        const updatedUser = await userService.updateUser(
+          req.tokenPayload.userId,
+          { $push: { caravanIds: newCaravan._id } }
+        );
+        console.log("userUpdated");
+      }
+
+      res.status(201).json({ message: "newCaravan created", newCaravan });
+
+      //res.status(201).json({ message: "Caravan created successfully" });
     } catch (error) {
       res
         .status(500)

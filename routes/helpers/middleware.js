@@ -5,7 +5,7 @@ const loggedInCheck = async (req, res, next) => {
   try {
     const token = req.headers["x-auth-token"];
     if (!token) {
-      res.status(400).json("Please provide a valid token");
+      return res.status(400).json("Please provide a valid token");
     }
     const tokenPayload = await jwtService.verifyToken(token);
     req.tokenPayload = tokenPayload;
