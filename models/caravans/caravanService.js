@@ -5,6 +5,7 @@ const {
 const Reservation = require("../reservations/reservationModel");
 const dayjs = require("dayjs");
 const chalk = require("chalk");
+const User = require("../users/userModel");
 
 const createCaravan = (caravanInput) => {
   const caravan = new Caravan(caravanInput);
@@ -15,14 +16,30 @@ const getCaravanById = (caravanId) => {
   return Caravan.findOne({ _id: caravanId });
 };
 
+const getCaravanByUserId = async (userId) => {
+  return Caravan.find({ "ownerDetails.ownerId": userId });
+};
 const getAllCaravans = () => {
   return Caravan.find();
 };
 
 const updateCaravan = (caravanId, updatedCaravan) => {
-  return Caravan.findByIdAndUpdate(caravanId, updatedCaravan, {
-    new: true,
-  });
+  const updateFields = { ...updatedCaravan };
+  if (updatedCaravan?.ownerDetails?.businessDetails === null) {
+    updateFields.ownerDetails = { ...updatedCaravan.ownerDetails };
+    delete updateFields.ownerDetails.businessDetails;
+  }
+
+  return Caravan.findByIdAndUpdate(
+    caravanId,
+    {
+      $set: updateFields,
+      ...(updatedCaravan?.ownerDetails?.businessDetails === null && {
+        $unset: { "ownerDetails.businessDetails": "" },
+      }),
+    },
+    { new: true }
+  );
 };
 
 const deleteCaravan = (caravanId) => {
@@ -94,4 +111,5 @@ module.exports = {
   updateCaravan,
   deleteCaravan,
   searchAvailabilityByDate,
+  getCaravanByUserId,
 };

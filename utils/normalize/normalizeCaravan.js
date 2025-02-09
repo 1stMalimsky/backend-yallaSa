@@ -75,10 +75,10 @@ const normalizeCaravan = (caravan) => {
       businessDetails: {
         companyId: caravan.userDetails.companyId,
         companyName: caravan.userDetails.companyName,
-        officePhone: caravan.userDetails.companyPhone,
-        city: caravan.userDetails.companyCity,
-        street: caravan.userDetails.companyStreet,
-        email: caravan.userDetails.companyEmail,
+        phone: caravan.userDetails.phone,
+        city: caravan.userDetails.city,
+        street: caravan.userDetails.street,
+        email: caravan.userDetails.email,
       },
       //caravanImages: caravan.caravanImages, // Assuming this structure is correct; adjust if needed
     },
@@ -94,7 +94,9 @@ const normalizeCaravan = (caravan) => {
       city: caravan.city,
       street: caravan.street,
       houseNumber: caravan.houseNumber,
-      gpsLocation: caravan.mapsLocation,
+      gpsData: caravan.mapsLocation,
+      pickupTime: caravan.pickupFrom,
+      dropoffTime: caravan.dropoffUntil,
     },
     listingName: caravan.listingName,
     description: caravan.description,
@@ -103,20 +105,26 @@ const normalizeCaravan = (caravan) => {
       minimumNights: +caravan.minimumNights,
     },
     insuranceDetails: {
-      basicIncluded: caravan.insuranceIncluded,
+      basicIncluded: caravan.insuranceIncluded === "true" ? true : false,
+      premiumAvailable: +caravan.premiumInsurance > 0 ? true : false,
       premiumPricePerNight: +caravan.premiumInsurance,
-      premiumAvailable: caravan.premiumInsurance !== "",
       basicPricePerNight: +caravan.basicInsurance,
     },
-    cancellationPolicy: {
-      isCancellationPolicy: caravan.isCancelationPolicy,
-      freeCancelWindow: +caravan.freeCancelationDays,
-      cancellationFeePercent: +caravan.cancelationPrice,
+    cancelationPolicy: {
+      isCancelationPolicy:
+        caravan.isCancelationPolicy === "true" ? true : false,
+      freeCancelWindow:
+        caravan.isCancelationPolicy === "true"
+          ? +caravan.freeCancelationDays
+          : 0,
+      cancelationFeePercent:
+        caravan.isCancelationPolicy === "true" ? +caravan.cancelationPrice : 0,
     },
     rating: {
       rating: +caravan.rating || "",
       numOfReviews: +caravan.numOfReviews || "",
     },
+    kosherCaravan: caravan.kosherCaravan || false,
   };
 
   console.log("Normalized Caravan Data", normalizedData);

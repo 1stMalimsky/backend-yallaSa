@@ -101,10 +101,11 @@ router.get("/:id", async (req, res) => {
 });
 
 /* UPDATE USER */
-router.patch("/update/:id", loggedInCheck, async (req, res) => {
+router.put("/update/:id", loggedInCheck, async (req, res) => {
   if (req.tokenPayload.userId !== req.params.id) {
     return res.status(401).json({ message: "Unauthorized" });
   }
+
   try {
     const updatedUser = await userService.updateUser(req.params.id, req.body);
     if (!updatedUser) {

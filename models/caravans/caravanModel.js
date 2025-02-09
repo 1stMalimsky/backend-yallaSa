@@ -26,11 +26,6 @@ const caravanSchema = new mongoose.Schema(
       licensePlateNumber: { type: String, required: true },
       model: { type: String, required: true },
       year: { type: Number, required: true },
-      /* licenseImages: {
-        vehicleLicense: { type: String, required: true },
-        mandInsurance: { type: String },
-        thirdPartyInsurance: { type: String },
-      },*/
     },
     ownerDetails: {
       ownerId: { type: mongoose.Schema.Types.ObjectId, required: true },
@@ -38,42 +33,12 @@ const caravanSchema = new mongoose.Schema(
       businessDetails: {
         companyName: { type: String },
         companyId: { type: String },
-        officePhone: { type: String },
+        phone: { type: String },
         city: { type: String },
         street: { type: String },
         email: { type: String },
       },
     },
-    /* caravanImages: {
-      image1: {
-        fileName: { type: String },
-        path: { type: String },
-        contentType: { type: String },
-        userId: { type: mongoose.Schema.Types.ObjectId },
-        caravanId: { type: mongoose.Schema.Types.ObjectId },
-      },
-      image2: {
-        fileName: { type: String },
-        path: { type: String },
-        contentType: { type: String },
-        userId: { type: mongoose.Schema.Types.ObjectId },
-        caravanId: { type: mongoose.Schema.Types.ObjectId },
-      },
-      image3: {
-        fileName: { type: String },
-        path: { type: String },
-        contentType: { type: String },
-        userId: { type: mongoose.Schema.Types.ObjectId },
-        caravanId: { type: mongoose.Schema.Types.ObjectId },
-      },
-      image4: {
-        fileName: { type: String },
-        path: { type: String },
-        contentType: { type: String },
-        userId: { type: mongoose.Schema.Types.ObjectId },
-        caravanId: { type: mongoose.Schema.Types.ObjectId },
-      },
-    }, */
     features: {
       kitchen: {
         hasSink: { type: Boolean },
@@ -124,8 +89,9 @@ const caravanSchema = new mongoose.Schema(
       city: { type: String },
       street: { type: String },
       houseNumber: { type: String },
-      googleLocation: { type: String },
-      gpsData: { type: [Number] },
+      gpsData: { type: String },
+      pickupTime: { type: String },
+      dropoffTime: { type: String },
     },
     listingName: { type: String },
     description: { type: String },
@@ -136,8 +102,8 @@ const caravanSchema = new mongoose.Schema(
     insuranceDetails: {
       basicIncluded: { type: Boolean },
       premiumAvailable: { type: Boolean },
-      basicPricePerNigth: { type: Number },
-      premiumPricePerNigth: { type: Number },
+      basicPricePerNight: { type: Number },
+      premiumPricePerNight: { type: Number },
     },
     cancelationPolicy: {
       isCancelationPolicy: { type: Boolean },

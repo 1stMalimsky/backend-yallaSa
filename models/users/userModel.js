@@ -19,13 +19,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-
-    license: {
-      filename: { type: String, default: "" },
-      path: { type: String, default: "" },
-      contentType: { type: String, default: "" },
-    },
     isOwner: {
+      type: Boolean,
+      default: false,
+    },
+    isBusiness: {
       type: Boolean,
       default: false,
     },
@@ -47,9 +45,30 @@ const userSchema = new mongoose.Schema(
         ref: "Reservation",
       },
     ],
+    paymentDetails: {
+      bankAccount: { type: String },
+      bankBranch: { type: String },
+      bankName: { type: String },
+      phone: { type: String },
+    },
+    businessDetails: {
+      companyName: { type: String },
+      companyId: { type: String },
+      email: { type: String },
+      phone: { type: String },
+      city: { type: String },
+      street: { type: String },
+    },
   },
   { timestamps: true }
 );
+
+userSchema.pre("save", function (next) {
+  if (!this.isBusiness && this.businessDetails) {
+    this.businessDetails = undefined; // ✅ Remove `businessDetails` if `isBusiness` is false
+  }
+  next();
+});
 
 userSchema.path("caravanIds").validate(function (value) {
   if (this.isOwner) {

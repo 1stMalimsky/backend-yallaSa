@@ -3,11 +3,23 @@ const { reservationService } = require("../models/serviceIndex");
 const Caravan = require("../models/caravans/caravanModel");
 const router = express.Router();
 const chalk = require("chalk");
+const { loggedInCheck, checkCredentials } = require("./helpers/middleware");
+const userService = require("../models/users/userService");
 
+/* CREATE RESERVATION */
 router.post("/create", async (req, res) => {
   try {
+    const userId = req.body.userId;
     const newReservation = await reservationService.createReservation(req.body);
-    res.status(201).json({ message: "Reservation created successfully" });
+    if (newReservation) {
+      const updateUser = await userService.updateUser(userId, {
+        $push: { userReservations: newReservation._id },
+      });
+      if (updateUser) {
+        console.log("user Updated", updateUser);
+      }
+      res.status(201).json({ message: "Reservation created successfully" });
+    }
   } catch (error) {
     res
       .status(500)
@@ -15,18 +27,24 @@ router.post("/create", async (req, res) => {
   }
 });
 
-router.get("/all", async (req, res) => {
-  try {
-    const reservations = await reservationService.getAllReservations();
-    res
-      .status(200)
-      .json({ message: "All reservations", reservations: reservations });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Get All Reservations Err", error: error.message });
+/* GET ALL RESERVATIONS */
+router.get(
+  "/all",
+  loggedInCheck,
+  checkCredentials((needAdmin = true), (needOwner = true)),
+  async (req, res) => {
+    try {
+      const reservations = await reservationService.getAllReservations();
+      res
+        .status(200)
+        .json({ message: "All reservations", reservations: reservations });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: "Get All Reservations Err", error: error.message });
+    }
   }
-});
+);
 
 router.get("/:reservationId", async (req, res) => {
   try {

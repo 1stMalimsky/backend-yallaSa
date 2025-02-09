@@ -39,8 +39,8 @@ app.use((req, res, next) => {
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   next();
 });
-app.use(express.json({ limit: "50mb" })); // For parsing application/json
-app.use(express.urlencoded({ extended: true, limit: "50mb" })); // For parsing application/x-www-form-urlencoded
+app.use(express.json({ limit: "100mb" })); // For parsing application/json
+app.use(express.urlencoded({ extended: true, limit: "100mb" })); // For parsing application/x-www-form-urlencoded
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
