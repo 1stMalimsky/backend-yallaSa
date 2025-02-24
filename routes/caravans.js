@@ -22,27 +22,14 @@ router.post("/create", loggedInCheck, async (req, res) => {
     /* NEDD VALIDATION? */
     const newCaravan = await caravanService.createCaravan(normalizedCaravan);
     console.log("newcravanCreated", newCaravan._id);
+    const updateOwner = await userService.updateUser(req.tokenPayload.userId, {
+      $push: { caravanIds: newCaravan._id },
+    });
 
-    if (newCaravan) {
-      const updatedUser = await userService.updateUser(
-        req.tokenPayload.userId,
-        { $push: { caravanIds: newCaravan._id }, $set: { isOwner: true } }
-      );
-      console.log("userUpdated", { isOwner: updatedUser.isOwner });
-
-      const updatedToken = await generateToken({
-        userId: req.tokenPayload.userId,
-        isAdmin: req.tokenPayload.isAdmin,
-        isOwner: true,
-      });
-      console.log("updatedToken", updatedToken);
-
-      res.status(201).json({
-        message: "newCaravan created",
-        newCaravan,
-        tokenUpdated: updatedToken,
-      });
-    }
+    res.status(201).json({
+      message: "newCaravan created",
+      newCaravan: newCaravan,
+    });
 
     //res.status(201).json({ message: "Caravan created successfully" });
   } catch (error) {
@@ -167,6 +154,9 @@ router.delete(
             .json({ message: "You are not authorized to delete this caravan" });
         } else {
           await caravanService.deleteCaravan(req.params.caravanId);
+          await userService.updateUser(ownerId, {
+            $pull: { caravanIds: req.params.caravanId },
+          });
           res.status(200).json({ message: "Caravan deleted successfully" });
         }
       }

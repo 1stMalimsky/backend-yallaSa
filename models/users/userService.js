@@ -1,6 +1,5 @@
 const User = require("./userModel");
-
-/* MISSING LOGIN WITH TOKEN CREATION */
+const mongoose = require("mongoose");
 
 const registerUser = (userInput) => {
   const user = new User(userInput);
@@ -20,12 +19,34 @@ const getAllUsers = () => {
 };
 
 const updateUser = (userId, updatedUser) => {
-  return User.findByIdAndUpdate(userId, updatedUser, {
-    new: true,
-  });
+  return User.findByIdAndUpdate(userId, { $set: updatedUser }, { new: true });
 };
 
-deleteUser = (userId) => {
+const removeReservation = (userId, reservationId, userType) => {
+  if (userType === "owner") {
+    console.log("inOwner remove");
+
+    return User.findByIdAndUpdate(
+      { _id: userId },
+      {
+        $pull: { ownerReservations: reservationId },
+      },
+      { new: true }
+    );
+  }
+  if (userType === "user") {
+    console.log("inUser remove");
+    return User.findByIdAndUpdate(
+      { _id: userId },
+      {
+        $pull: { userReservations: reservationId },
+      },
+      { new: true }
+    );
+  }
+};
+
+const deleteUser = (userId) => {
   return User.deleteOne({ _id: userId });
 };
 
@@ -36,4 +57,5 @@ module.exports = {
   getUserById,
   updateUser,
   deleteUser,
+  removeReservation,
 };

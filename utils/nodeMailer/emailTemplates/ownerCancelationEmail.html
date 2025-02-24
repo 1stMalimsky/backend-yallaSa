@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>הזמנה בוטלה</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        direction: rtl;
+        text-align: right;
+      }
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        background-color: #d9534f;
+        color: #ffffff;
+        text-align: center;
+        padding: 15px;
+        font-size: 20px;
+        font-weight: bold;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+      .content {
+        padding: 20px;
+        font-size: 16px;
+        color: #333;
+        line-height: 1.6;
+      }
+      .details {
+        background: #f9f9f9;
+        padding: 15px;
+        border-radius: 6px;
+        margin-top: 10px;
+      }
+      .footer {
+        text-align: center;
+        padding: 15px;
+        font-size: 14px;
+        color: #555;
+      }
+      .button {
+        display: inline-block;
+        padding: 10px 15px;
+        margin-top: 15px;
+        background-color: #d9534f;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">🚨 ההזמנה בוטלה</div>
+      <div class="content">
+        <p>שלום <strong>{{ownerName}}</strong>,</p>
+        <p>
+          אנו מצטערים להודיעך כי הזמנה לקרוואן שלך,
+          <strong>{{caravanName}}</strong>, שתוכננה בין התאריכים
+          <strong>{{checkInDate}}</strong> ל-<strong>{{checkOutDate}}</strong>,
+          בוטלה.
+        </p>
+
+        <div class="details">
+          <p><strong>פרטי ההזמנה:</strong></p>
+          <p>👤 <strong>שם האורח:</strong> {{customerName}}</p>
+          <p>📅 <strong>תאריך כניסה:</strong> {{checkInDate}}</p>
+          <p>📅 <strong>תאריך יציאה:</strong> {{checkOutDate}}</p>
+        </div>
+
+        <p>
+          אם יש לך מדיניות ביטולים, היא תיושם אוטומטית. תוכל לבדוק את זמינות
+          הקרוואן שלך בלוח הבקרה או לפנות אלינו לקבלת סיוע.
+        </p>
+
+        <p>אנו מעריכים את ההבנה שלך ומקווים להביא לך הזמנות נוספות בקרוב!</p>
+      </div>
+
+      <div class="footer">
+        🚐 <strong>צוות יאללה סע!</strong><br />
+        <a href="{{resManagementLink}}" class="button">פתח את לוח הבקרה</a
+        ><br />
+        <a href="mailto:[אימייל תמיכה]">[אימייל תמיכה]</a>
+      </div>
+    </div>
+  </body>
+</html>

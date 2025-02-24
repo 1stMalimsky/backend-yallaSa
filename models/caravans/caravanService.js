@@ -6,6 +6,7 @@ const Reservation = require("../reservations/reservationModel");
 const dayjs = require("dayjs");
 const chalk = require("chalk");
 const User = require("../users/userModel");
+const BlockedDate = require("../reservations/blockedDateModel");
 
 const createCaravan = (caravanInput) => {
   const caravan = new Caravan(caravanInput);
@@ -74,11 +75,17 @@ const searchAvailabilityByDate = async (queryStart, queryEnd, page, limit) => {
       ],
     }).select("caravanId");
 
-    if (overlappingReservations.length > 0) {
-      excludedCaravanIds = overlappingReservations.map(
-        (reservation) => reservation.caravanId
-      );
-    }
+    const blockedDates = await BlockedDate.find({
+      date: { $gte: queryStart, $lte: queryEnd },
+    }).select("caravanId");
+
+    excludedCaravanIds = [
+      ...new Set([
+        ...overlappingReservations.map((r) => r.caravanId.toString()),
+        ...blockedDates.map((b) => b.caravanId.toString()),
+      ]),
+    ];
+
     console.log(chalk.bgRed.bold("excludedCaravanIds"), excludedCaravanIds);
 
     const availableCaravans = await Caravan.find({
@@ -97,10 +104,8 @@ const searchAvailabilityByDate = async (queryStart, queryEnd, page, limit) => {
       totalPages: Math.ceil(totalAvailable / limit),
     };
   } catch (error) {
-    console.log("search for caravan error", error);
-    res
-      .status(500)
-      .json({ message: "searchAvailablilityByDate error", error: error });
+    console.error("search for caravan error", error);
+    return { error: "searchAvailabilityByDate error", details: error.message };
   }
 };
 

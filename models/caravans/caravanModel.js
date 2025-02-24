@@ -110,6 +110,19 @@ const caravanSchema = new mongoose.Schema(
       freeCancelWindow: { type: Number },
       cancelationFeePercent: { type: Number },
     },
+
+    extras: {
+      bbq: { isAvailable: { type: Boolean }, price: { type: Number } },
+      extraLinen: { isAvailable: { type: Boolean }, price: { type: Number } },
+      tent: { isAvailable: { type: Boolean }, price: { type: Number } },
+      extraGas: { isAvailable: { type: Boolean }, price: { type: Number } },
+      picnicSet: { isAvailable: { type: Boolean }, price: { type: Number } },
+      cleaningService: {
+        isAvailable: { type: Boolean },
+        price: { type: Number },
+      },
+    },
+
     rating: {
       rating: { type: Number },
       numOfReviews: { type: Number },

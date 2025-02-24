@@ -1,227 +1,224 @@
 [{
   "_id": {
-    "$oid": "674ecebfa8d12e2fa8dfc7bd"
+    "$oid": "67a35f9124fcb708dc2b2a0b"
   },
-  "ownerId": 13,
-  "model": "Luxury Caravan XL",
-  "images": [
-    {
-      "imgNumber": 1,
-      "original": "https://example.com/images/caravan1-original.jpg",
-      "thumbnail": "https://example.com/images/caravan1-thumb.jpg",
-      "alt": "Exterior view of Luxury Caravan XL",
-      "_id": {
-        "$oid": "674ecebfa8d12e2fa8dfc7be"
-      }
+  "carType": "fullCaravan",
+  "personCapacity": {
+    "numOfSeats": 4,
+    "numOfBeds": 4,
+    "numOfSleepers": 4
+  },
+  "licenseDetails": {
+    "licenseRequired": "B",
+    "licensePlateNumber": "4867474",
+    "model": "Model",
+    "year": 2020
+  },
+  "ownerDetails": {
+    "ownerId": {
+      "$oid": "679bc7fd09069cc3de420db2"
     },
-    {
-      "imgNumber": 2,
-      "original": "https://example.com/images/caravan1-original-interior.jpg",
-      "thumbnail": "https://example.com/images/caravan1-thumb-interior.jpg",
-      "alt": "Interior view of Luxury Caravan XL",
-      "_id": {
-        "$oid": "674ecebfa8d12e2fa8dfc7bf"
-      }
-    }
-  ],
-  "description": "A spacious and luxurious caravan perfect for family trips.",
-  "pricePerNight": 250,
-  "numOfBeds": 4,
-  "numOfSeats": 6,
+    "isBusiness": false,
+    "businessDetails": null
+  },
   "features": {
-    "hasAC": true,
-    "hasTV": true,
-    "shabbatSystem": false,
-    "kosherCaravan": true
+    "kitchen": {
+      "hasSink": true,
+      "hasStove": true
+    },
+    "bathroom": {
+      "hasToilet": true,
+      "hasIndoorShower": true,
+      "hasOutdoorShower": true
+    },
+    "vehicleProps": {
+      "hasFireExtinguisher": true,
+      "hasTowHitch": true,
+      "hasFirstAidKit": true,
+      "hasSmokeDetector": true,
+      "hasBackupCamera": true
+    },
+    "caravanProps": {
+      "hasTV": true,
+      "hasGPS": true,
+      "hasLinen": true,
+      "hasSolar": true,
+      "hasElectricity": true,
+      "hasAC": true
+    }
+  },
+  "kosherCaravan": false,
+  "measurements": {
+    "length": 150,
+    "width": 200,
+    "weight": 3000,
+    "minimumAge": 30,
+    "licenseClass": "B"
   },
   "locationDetails": {
-    "city": "Tel Aviv",
-    "street": "123 Beachside Lane",
-    "gpsData": [
-      32.0853,
-      34.7818
-    ]
+    "city": "קצרין סיטי",
+    "street": "חוקוק",
+    "houseNumber": "14",
+    "pickupTime": "12:00",
+    "dropoffTime": "18:00",
+    "gpsData": "32.99400505507112, 35.68531966884359"
   },
-  "bookedDates": {
-    "2024": {
-      "12": [
-        {
-          "start": 1734310800,
-          "end": 1734483600,
-          "_id": {
-            "$oid": "674ecebfa8d12e2fa8dfc7c0"
-          }
-        },
-        {
-          "start": 1735434000,
-          "end": 1735866000,
-          "_id": {
-            "$oid": "674ecebfa8d12e2fa8dfc7c1"
-          }
-        }
-      ]
-    },
-    "2025": {
-      "01": [
-        {
-          "start": 1736470800,
-          "end": 1736643600
-        }
-      ]
-    }
+  "listingName": "test car changed 1",
+  "description": "asd asasf asf asfasda\nsdasdas\n changed !!dasdasd",
+  "priceDetails": {
+    "pricePerNight": "555",
+    "minimumNights": "5"
   },
-  "__v": 0,
+  "insuranceDetails": {
+    "basicIncluded": true,
+    "premiumAvailable": true,
+    "basicPricePerNight": null,
+    "premiumPricePerNight": 555
+  },
+  "cancelationPolicy": {
+    "isCancelationPolicy": false,
+    "cancelationFeePercent": 90
+  },
+  "rating": {
+    "rating": null,
+    "numOfReviews": null
+  },
   "createdAt": {
-    "$date": "2024-12-03T09:26:23.964Z"
+    "$date": "2025-02-05T12:54:41.279Z"
   },
   "updatedAt": {
-    "$date": "2024-12-03T09:26:23.964Z"
-  }
+    "$date": "2025-02-09T10:20:52.052Z"
+  },
+  "__v": 0
 },
 {
   "_id": {
-    "$oid": "674ecebfa8d12e2fa8dfc7c3"
+    "$oid": "67a8a8aefa80dec228c7e4f7"
   },
-  "ownerId": 13,
-  "model": "Compact Camper",
-  "images": [
-    {
-      "imgNumber": 1,
-      "original": "https://example.com/images/caravan2-original.jpg",
-      "thumbnail": "https://example.com/images/caravan2-thumb.jpg",
-      "alt": "Exterior view of Compact Camper",
-      "_id": {
-        "$oid": "674ecebfa8d12e2fa8dfc7c4"
-      }
-    }
-  ],
-  "description": "Compact and cozy, ideal for couples or solo travelers.",
-  "pricePerNight": 150,
-  "numOfBeds": 2,
-  "numOfSeats": 4,
+  "carType": "integratedCarvan",
+  "personCapacity": {
+    "numOfBeds": 1,
+    "numOfSeats": 1,
+    "numOfSleepers": 1
+  },
+  "licenseDetails": {
+    "licenseRequired": "v",
+    "licensePlateNumber": "3433433",
+    "model": "sdf",
+    "year": 1999
+  },
+  "ownerDetails": {
+    "ownerId": {
+      "$oid": "679bc7fd09069cc3de420db2"
+    },
+    "isBusiness": false
+  },
   "features": {
-    "hasAC": true,
-    "hasTV": false,
-    "shabbatSystem": true,
-    "kosherCaravan": false
+    "kitchen": {
+      "hasSink": false,
+      "hasStove": false,
+      "hasMicrowave": false,
+      "hasOven": false,
+      "hasFridge": false,
+      "hasDiningTable": false,
+      "hasKitchenware": false
+    },
+    "bathroom": {
+      "hasToilet": false,
+      "hasIndoorShower": false,
+      "hasOutdoorShower": false
+    },
+    "vehicleProps": {
+      "hasFireExtinguisher": false,
+      "hasFirstAidKit": false,
+      "hasSmokeDetector": false,
+      "hasBackupCamera": false,
+      "hasBackupSensor": false,
+      "hasLevelingJack": false,
+      "hasTowHitch": false
+    },
+    "caravanProps": {
+      "hasTV": false,
+      "hasAC": false,
+      "hasShabbatSystem": false,
+      "hasAwning": false,
+      "hasElectricity": false,
+      "hasWaterHose": false,
+      "hasGenerator": false,
+      "hasGPS": false,
+      "hasBikeRack": false,
+      "hasLinen": false,
+      "hasSolar": false
+    }
+  },
+  "kosherCaravan": false,
+  "measurements": {
+    "length": 333,
+    "width": 999,
+    "weight": 3333,
+    "licenseClass": "v",
+    "minimumAge": 34
   },
   "locationDetails": {
-    "city": "Jerusalem",
-    "street": "45 Historic Blvd",
-    "gpsData": [
-      31.7683,
-      35.2137
-    ]
+    "city": "sdf",
+    "street": "sdf",
+    "houseNumber": "3",
+    "gpsData": "",
+    "pickupTime": "11:00",
+    "dropoffTime": "17:00"
   },
-  "bookedDates": {
-    "2024": {
-      "12": [
-        {
-          "start": 1734915600,
-          "end": 1735261200,
-          "_id": {
-            "$oid": "674ecebfa8d12e2fa8dfc7c5"
-          }
-        }
-      ]
+  "listingName": "fgsf",
+  "description": "fdsgfd",
+  "priceDetails": {
+    "pricePerNight": "122",
+    "minimumNights": "1"
+  },
+  "insuranceDetails": {
+    "basicIncluded": true,
+    "premiumAvailable": false,
+    "basicPricePerNight": 0,
+    "premiumPricePerNight": 0
+  },
+  "cancelationPolicy": {
+    "isCancelationPolicy": false,
+    "freeCancelWindow": 0,
+    "cancelationFeePercent": 0
+  },
+  "extras": {
+    "bbq": {
+      "isAvailable": true,
+      "price": 123
     },
-    "2025": {
-      "01": [
-        {
-          "start": 1737939600,
-          "end": 1738112400
-        }
-      ]
+    "extraLinen": {
+      "isAvailable": true,
+      "price": 123
+    },
+    "tent": {
+      "isAvailable": true,
+      "price": 132
+    },
+    "extraGas": {
+      "isAvailable": true,
+      "price": 123
+    },
+    "picnicSet": {
+      "isAvailable": true,
+      "price": 123
+    },
+    "cleaningService": {
+      "isAvailable": true,
+      "price": 132
     }
   },
-  "__v": 0,
+  "rating": {
+    "rating": null,
+    "numOfReviews": null
+  },
   "createdAt": {
-    "$date": "2024-12-03T09:26:23.964Z"
+    "$date": "2025-02-09T13:07:58.547Z"
   },
   "updatedAt": {
-    "$date": "2024-12-03T09:26:23.964Z"
-  }
-},
-{
-  "_id": {
-    "$oid": "674ecebfa8d12e2fa8dfc7c6"
+    "$date": "2025-02-10T06:16:03.333Z"
   },
-  "ownerId": 11,
-  "model": "Family Cruiser",
-  "images": [
-    {
-      "imgNumber": 1,
-      "original": "https://example.com/images/caravan3-original.jpg",
-      "thumbnail": "https://example.com/images/caravan3-thumb.jpg",
-      "alt": "Exterior view of Family Cruiser",
-      "_id": {
-        "$oid": "674ecebfa8d12e2fa8dfc7c7"
-      }
-    },
-    {
-      "imgNumber": 2,
-      "original": "https://example.com/images/caravan3-original-interior.jpg",
-      "thumbnail": "https://example.com/images/caravan3-thumb-interior.jpg",
-      "alt": "Interior view of Family Cruiser",
-      "_id": {
-        "$oid": "674ecebfa8d12e2fa8dfc7c8"
-      }
-    }
-  ],
-  "description": "A family-friendly caravan with all the modern amenities.",
-  "pricePerNight": 300,
-  "numOfBeds": 6,
-  "numOfSeats": 8,
-  "features": {
-    "hasAC": true,
-    "hasTV": true,
-    "shabbatSystem": true,
-    "kosherCaravan": true
-  },
-  "locationDetails": {
-    "city": "Haifa",
-    "street": "88 Northern Heights",
-    "gpsData": [
-      32.794,
-      34.9896
-    ]
-  },
-  "bookedDates": {
-    "2024": {
-      "12": [
-        {
-          "start": 1735434000,
-          "end": 1735606800,
-          "_id": {
-            "$oid": "674ecebfa8d12e2fa8dfc7c9"
-          }
-        }
-      ]
-    },
-    "2025": {
-      "01": [
-        {
-          "start": 1736643600,
-          "end": 1736643600
-        },
-        {
-          "start": 1737075600,
-          "end": 1737334800
-        }
-      ],
-      "02": [
-        {
-          "start": 1738717200,
-          "end": 1738890000
-        }
-      ]
-    }
-  },
-  "__v": 0,
-  "createdAt": {
-    "$date": "2024-12-03T09:26:23.964Z"
-  },
-  "updatedAt": {
-    "$date": "2024-12-03T09:26:23.964Z"
-  }
+  "__v": 0
 }]

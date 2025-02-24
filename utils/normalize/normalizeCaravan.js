@@ -95,8 +95,8 @@ const normalizeCaravan = (caravan) => {
       street: caravan.street,
       houseNumber: caravan.houseNumber,
       gpsData: caravan.mapsLocation,
-      pickupTime: caravan.pickupFrom,
-      dropoffTime: caravan.dropoffUntil,
+      pickupTime: caravan.pickupTime,
+      dropoffTime: caravan.dropoffTime,
     },
     listingName: caravan.listingName,
     description: caravan.description,
@@ -124,7 +124,33 @@ const normalizeCaravan = (caravan) => {
       rating: +caravan.rating || "",
       numOfReviews: +caravan.numOfReviews || "",
     },
-    kosherCaravan: caravan.kosherCaravan || false,
+    extras: {
+      bbq: {
+        isAvailable: caravan.extras.bbq.isAvailable,
+        price: +caravan.extras.bbq.price,
+      },
+      extraLinen: {
+        isAvailable: caravan.extras.extraLinen.isAvailable,
+        price: +caravan.extras.extraLinen.price,
+      },
+      tent: {
+        isAvailable: caravan.extras.tent.isAvailable,
+        price: +caravan.extras.tent.price,
+      },
+      extraGas: {
+        isAvailable: caravan.extras.extraGas.isAvailable,
+        price: +caravan.extras.extraGas.price,
+      },
+      picnicSet: {
+        isAvailable: caravan.extras.picnicSet.isAvailable,
+        price: +caravan.extras.picnicSet.price,
+      },
+      cleaningService: {
+        isAvailable: caravan.extras.cleaningService.isAvailable,
+        price: +caravan.extras.cleaningService.price,
+      },
+      kosherCaravan: caravan.kosherCaravan || false,
+    },
   };
 
   console.log("Normalized Caravan Data", normalizedData);

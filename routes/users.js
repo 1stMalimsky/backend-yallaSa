@@ -14,6 +14,8 @@ const { loggedInCheck } = require("./helpers/middleware");
 
 router.post("/register", async (req, res) => {
   try {
+    console.log("req.body", req.body);
+
     const joiResponse = validateUser(req.body);
     if (joiResponse && joiResponse.error) {
       console.log("Register joiRespone", joiResponse.error);
@@ -69,6 +71,7 @@ router.post("/login", async (req, res) => {
       userId: currentUser._id,
       isAdmin: currentUser.isAdmin,
       isOwner: currentUser.isOwner,
+      isBusiness: currentUser.isBusiness,
     });
     res.json({ token: token });
   } catch (err) {
@@ -89,6 +92,7 @@ router.get("/all", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const user = await userService.getUserById(req.params.id);
+    console.log("userDetails", user);
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -107,13 +111,36 @@ router.put("/update/:id", loggedInCheck, async (req, res) => {
   }
 
   try {
+    const foundUser = await userService.getUserById(req.params.id);
+    if (!foundUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    let token = "";
+    if (
+      foundUser.isAdmin !== req.body.isAdmin ||
+      foundUser.isOwner !== req.body.isOwner ||
+      foundUser.isBusiness !== req.body.isBusiness
+    ) {
+      token = await jwtService.generateToken({
+        userId: req.tokenPayload.userId,
+        isAdmin: req.body.isAdmin,
+        isOwner: req.body.isOwner,
+        isBusiness: req.body.isBusiness,
+      });
+      console.log("new token created");
+    }
+
     const updatedUser = await userService.updateUser(req.params.id, req.body);
     if (!updatedUser) {
       return res.status(404).json({ message: "User not found" });
     }
-    res
-      .status(200)
-      .json({ message: "User updated successfully", user: updatedUser });
+
+    res.status(200).json({
+      message: "User updated successfully",
+      user: updatedUser,
+      token: token || "",
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

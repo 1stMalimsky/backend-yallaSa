@@ -1,101 +1,158 @@
 [{
-  "_id": 11,
-  "fullName": "Alon Malimsky",
-  "email": "alonmalichi@gmail.com",
-  "phone": "0533303677",
-  "password": "$2a$10$cfI4Ndf8orYvZvydx4qw9egLjp2rrdWIHz31oG3VdU5mW2n2K6ETW",
-  "license": "",
-  "isOwner": true,
-  "caravanIds": [
-    1111,
-    1112
-  ],
-  "ownerReservations": [
-    {
-      "$oid": "6483c1a5e245d9e2a1e91721"
-    },
-    {
-      "$oid": "6483c1a5e245d9e2a1e91722"
-    }
-  ],
-  "userReservations": [
-    {
-      "$oid": "6483c1a5e245d9e2a1e91731"
-    },
-    {
-      "$oid": "6483c1a5e245d9e2a1e91732"
-    }
-  ],
-  "date": {
-    "$date": "2024-12-03T09:26:23.931Z"
+  "_id": {
+    "$oid": "6761380a1ca29a109c77d443"
   },
-  "__v": 0,
+  "isAdmin": false,
+  "fullName": "number four",
+  "email": "num4@gmail.com",
+  "phone": "0533303677",
+  "password": "$2a$10$xSafrBrFNi9zw/v/AejmWOcQkLVhZwcvu3K7WvwOQmyUxtDm7b9su",
+  "isOwner": true,
+  "ownerReservations": [],
+  "userReservations": [],
   "createdAt": {
-    "$date": "2024-12-03T09:26:23.935Z"
+    "$date": "2024-12-17T08:36:26.945Z"
   },
   "updatedAt": {
-    "$date": "2024-12-08T09:49:08.887Z"
+    "$date": "2025-01-28T06:45:45.223Z"
   },
-  "isAdmin": true
+  "__v": 0,
+  "caravanIds": [
+    "679b4326b50396918183003f"
+  ],
+  "isBusiness": false,
+  "paymentDetails": {
+    "phone": "0533303677"
+  }
 },
 {
-  "_id": 12,
-  "fullName": "Shlomo Levi",
-  "email": "shlomo@gmail.com",
-  "phone": "0541234567",
-  "password": "$2a$10$YqYE23w1jmuMmhUOJQLGue/I1749JuTqY3dD1tHrKUTVOQZ0JOubS",
-  "license": "AB12345",
-  "isOwner": false,
+  "_id": {
+    "$oid": "679885a308b798b5d929ca0c"
+  },
+  "isAdmin": false,
+  "fullName": "alon Malimsky",
+  "email": "a@gmail.com",
+  "phone": "0533303677",
+  "password": "$2a$10$7mPnFTdcYKM9ZlEMR/49r.umq7dLK8D8zr7.CMp0O7CJ3tl9QCQYa",
+  "isOwner": true,
   "caravanIds": [],
   "ownerReservations": [],
   "userReservations": [
     {
-      "$oid": "6483c1a5e245d9e2a1e91733"
+      "$oid": "67ab0ebc0103f29f2b957630"
     }
   ],
-  "date": {
-    "$date": "2024-12-03T09:26:23.932Z"
-  },
-  "__v": 0,
   "createdAt": {
-    "$date": "2024-12-03T09:26:23.935Z"
+    "$date": "2025-01-28T07:22:11.420Z"
   },
   "updatedAt": {
-    "$date": "2024-12-08T09:49:08.892Z"
+    "$date": "2025-02-11T08:47:57.004Z"
   },
-  "isAdmin": false
+  "__v": 0
 },
 {
-  "_id": 13,
-  "fullName": "Yael Cohen",
-  "email": "yael@gmail.com",
-  "phone": "0527654321",
-  "password": "$2a$10$gXE3OeJmWdvq5G/QMIonmeY7wWwYaGzoKlwgPGBwc8zpTxqj8Quga",
-  "license": "XY67890",
+  "_id": {
+    "$oid": "679bc7fd09069cc3de420db2"
+  },
+  "isAdmin": false,
+  "fullName": "Al Malimsky",
+  "email": "al@gmail.com",
+  "phone": "0533303677",
+  "password": "$2a$10$Ao/0GI737UP7G0tEAG6pYesu8cRUoOPQE4bVgc3//kwxrU00dI.Cm",
   "isOwner": true,
   "caravanIds": [
-    1113,
-    1114
+    {
+      "$oid": "67a8a8aefa80dec228c7e4f7"
+    }
   ],
   "ownerReservations": [
     {
-      "$oid": "6483c1a5e245d9e2a1e91723"
-    }
-  ],
-  "userReservations": [
+      "$oid": "67ab0ebc0103f29f2b957630"
+    },
     {
-      "$oid": "6483c1a5e245d9e2a1e91734"
+      "$oid": "67ab10720103f29f2b957653"
+    },
+    {
+      "$oid": "67ab112e0103f29f2b95765a"
+    },
+    {
+      "$oid": "679bc7fd09069cc3de420db2"
+    },
+    {
+      "$oid": "679bc7fd09069cc3de420db2"
+    },
+    {
+      "$oid": "679bc7fd09069cc3de420db2"
     }
   ],
-  "date": {
-    "$date": "2024-12-03T09:26:23.932Z"
-  },
-  "__v": 0,
+  "userReservations": [],
   "createdAt": {
-    "$date": "2024-12-03T09:26:23.935Z"
+    "$date": "2025-01-30T18:42:05.207Z"
   },
   "updatedAt": {
-    "$date": "2024-12-08T09:49:08.896Z"
+    "$date": "2025-02-11T09:55:41.696Z"
   },
-  "isAdmin": false
+  "__v": 0,
+  "paymentDetails": {
+    "phone": "0533303677"
+  },
+  "isBusiness": false
+},
+{
+  "_id": {
+    "$oid": "67a9afcba140c0a97136c031"
+  },
+  "isAdmin": false,
+  "fullName": "test test",
+  "email": "test@gmail.com",
+  "phone": "0533306677",
+  "password": "$2a$10$kntha0IFogDdC1V0DB95p.sERkdoNMpEul1S.iOpPop5OYibVtNfK",
+  "isOwner": true,
+  "isBusiness": true,
+  "caravanIds": [],
+  "ownerReservations": [],
+  "userReservations": [
+    {
+      "$oid": "67ab10720103f29f2b957653"
+    },
+    {
+      "$oid": "67ab112e0103f29f2b95765a"
+    },
+    {
+      "$oid": "67ab1240eaa6561256469492"
+    },
+    {
+      "$oid": "67ab12ac6073f2ebd5e38581"
+    },
+    {
+      "$oid": "67ab132ed589cb3a09616d8e"
+    },
+    {
+      "$oid": "67ab1e772339aacdf207529c"
+    },
+    {
+      "$oid": "67ab1e9d2339aacdf20752a2"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-02-10T07:50:35.518Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-11T09:55:41.694Z"
+  },
+  "__v": 0,
+  "businessDetails": {
+    "companyName": "testChange",
+    "companyId": "038201307",
+    "phone": "097650111",
+    "city": "test",
+    "street": "testChange",
+    "email": "test@gmail.com"
+  },
+  "paymentDetails": {
+    "bankName": "leumi",
+    "bankBranch": "354",
+    "bankAccount": "65481",
+    "phone": ""
+  }
 }]

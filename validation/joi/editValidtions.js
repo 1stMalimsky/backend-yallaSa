@@ -29,21 +29,74 @@ const imageSchema = Joi.object({
 
 const caravanValidationSchema = Joi.object({
   ownerId: Joi.number().required().label("Owner ID"), // TEMPORARY
-  //ownerId: Joi.string().pattern(/^[a-fA-F0-9]{24}$/).required().label("Owner ID"),
+  // ownerId: Joi.string().pattern(/^[a-fA-F0-9]{24}$/).required().label("Owner ID"),
   model: Joi.string().required().min(1).max(100).label("Model"),
-  images: Joi.array().items(imageSchema).required().label("Images"),
   description: Joi.string().required().max(500).label("Description"),
   pricePerNight: Joi.number().required().min(1).label("Price Per Night"),
   numOfBeds: Joi.number().optional().min(1).label("Number of Beds"),
   numOfSeats: Joi.number().optional().min(1).label("Number of Seats"),
-  features: Joi.object({
-    hasAC: Joi.boolean().default(false).label("Has Air Conditioning"),
-    hasTV: Joi.boolean().default(false).label("Has TV"),
-    shabbatSystem: Joi.boolean().default(false).label("Shabbat System"),
-    kosherCaravan: Joi.boolean().default(false).label("Kosher Caravan"),
+
+  caravanProps: Joi.object({
+    hasTV: Joi.object({
+      isAvailable: Joi.boolean().required().label("Has TV Available"),
+      price: Joi.number().min(0).required().label("TV Price"),
+    }).required(),
+
+    hasAc: Joi.object({
+      isAvailable: Joi.boolean().required().label("Has AC Available"),
+      price: Joi.number().min(0).required().label("AC Price"),
+    }).required(),
+
+    hasShabbatSystem: Joi.object({
+      isAvailable: Joi.boolean()
+        .required()
+        .label("Has Shabbat System Available"),
+      price: Joi.number().min(0).required().label("Shabbat System Price"),
+    }).required(),
+
+    hasAwning: Joi.object({
+      isAvailable: Joi.boolean().required().label("Has Awning Available"),
+      price: Joi.number().min(0).required().label("Awning Price"),
+    }).required(),
+
+    hasElectricity: Joi.object({
+      isAvailable: Joi.boolean().required().label("Has Electricity Available"),
+      price: Joi.number().min(0).required().label("Electricity Price"),
+    }).required(),
+
+    hasWaterHose: Joi.object({
+      isAvailable: Joi.boolean().required().label("Has Water Hose Available"),
+      price: Joi.number().min(0).required().label("Water Hose Price"),
+    }).required(),
+
+    hasGenerator: Joi.object({
+      isAvailable: Joi.boolean().required().label("Has Generator Available"),
+      price: Joi.number().min(0).required().label("Generator Price"),
+    }).required(),
+
+    hasGPS: Joi.object({
+      isAvailable: Joi.boolean().required().label("Has GPS Available"),
+      price: Joi.number().min(0).required().label("GPS Price"),
+    }).required(),
+
+    hasBikeRack: Joi.object({
+      isAvailable: Joi.boolean().required().label("Has Bike Rack Available"),
+      price: Joi.number().min(0).required().label("Bike Rack Price"),
+    }).required(),
+
+    hasLinen: Joi.object({
+      isAvailable: Joi.boolean().required().label("Has Linen Available"),
+      price: Joi.number().min(0).required().label("Linen Price"),
+    }).required(),
+
+    hasSolar: Joi.object({
+      isAvailable: Joi.boolean().required().label("Has Solar Available"),
+      price: Joi.number().min(0).required().label("Solar Price"),
+    }).required(),
   })
-    .optional()
-    .label("Features"),
+    .required()
+    .label("Caravan Properties"),
+
   locationDetails: Joi.object({
     city: Joi.string().optional().max(100).label("City"),
     street: Joi.string().optional().max(100).label("Street"),

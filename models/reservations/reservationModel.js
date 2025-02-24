@@ -18,27 +18,55 @@ const priceDetailsSchema = new mongoose.Schema({
   cancelation: { type: Number, required: true },
 });
 
-const resrvationSchema = new mongoose.Schema(
+const reservationSchema = new mongoose.Schema(
   {
-    userId: { type: String, ref: "User", required: true },
+    listingName: { type: String, required: true },
+    userName: { type: String, required: true },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     caravanId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Caravan",
       required: true,
     },
-    dates: { type: reservedDatesSchema },
-    price: { type: priceDetailsSchema },
-    extras: {
-      type: Map,
-      of: Schema.Types.Mixed,
+    ownerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
-    insuranceSelected: { type: String, default: "basic" },
-    cancelationPolicy: { type: String, default: "basic" },
+    email: { type: String, required: true },
+    phone: { type: String, required: true },
+    dates: { type: reservedDatesSchema, required: true },
+    priceDetails: { type: priceDetailsSchema, required: true },
+    extras: { type: Object, default: {} },
+    insuranceSelected: {
+      type: String,
+      enum: ["basic", "premium"],
+      default: "basic",
+    },
+    cancelationPolicy: {
+      type: String,
+      enum: ["basic", "flexible"],
+      default: "basic",
+    },
+    status: {
+      type: String,
+      enum: ["confirmed", "canceled"],
+      default: "confirmed",
+    },
+    location: {
+      city: { type: String, required: true },
+      street: { type: String, required: true },
+      houseNumber: { type: String, required: true },
+      gpsLocation: { type: [Number] },
+    },
   },
-  { timestamps: true },
-  { strict: false }
+  { timestamps: true }
 );
 
-const Reservation = mongoose.model("Reservation", resrvationSchema);
+const Reservation = mongoose.model("Reservation", reservationSchema);
 
 module.exports = Reservation;

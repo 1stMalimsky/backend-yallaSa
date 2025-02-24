@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>הזמנה חדשה לקרוואן שלך!</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        direction: rtl;
+        text-align: right;
+      }
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        text-align: center;
+        padding: 20px;
+        background: #007bff;
+        color: #ffffff;
+        font-size: 24px;
+        font-weight: bold;
+        border-radius: 8px 8px 0 0;
+      }
+      .content {
+        padding: 20px;
+        color: #333;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+      .details {
+        background: #f8f8f8;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 20px 0;
+        direction: rtl;
+        text-align: right;
+      }
+      .footer {
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+        color: #666;
+      }
+      .button {
+        display: inline-block;
+        padding: 12px 20px;
+        color: #ffffff;
+        background: #007bff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        margin-top: 10px;
+        text-align: center;
+      }
+      .button:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">📢 הזמנה חדשה לקרוואן שלך!</div>
+      <div class="content">
+        <p>שלום <strong>{{ownerName}}</strong>,</p>
+        <p>ברכות! התקבלה הזמנה חדשה לקרוואן שלך:</p>
+
+        <div class="details">
+          <p><strong>קרוואן:</strong> {{caravanName}}</p>
+          <p><strong>שם הלקוח:</strong> {{customerName}}</p>
+          <p><strong>תאריך כניסה:</strong> {{checkInDate}}</p>
+          <p><strong>תאריך יציאה:</strong> {{checkOutDate}}</p>
+          <p><strong>מחיר כולל:</strong> {{totalPrice}} ₪</p>
+        </div>
+
+        <p>לניהול ההזמנה שלך ולסקירת כל הפרטים, לחץ על הכפתור:</p>
+
+        <p style="text-align: center">
+          <a href="{{manageReservationUrl}}" class="button">ניהול ההזמנה</a>
+        </p>
+
+        <p>תודה על שיתוף הפעולה! אנו מאחלים לך חווית השכרה מוצלחת.</p>
+        <p>בברכה,<br /><strong>צוות השכרת הקרוואנים</strong></p>
+      </div>
+
+      <div class="footer">
+        &copy; {{currentYear}} השכרת קרוואנים |
+        <a href="{{supportUrl}}">צרו קשר</a>
+      </div>
+    </div>
+  </body>
+</html>

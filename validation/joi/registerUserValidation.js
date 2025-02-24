@@ -19,7 +19,6 @@ const registerUserValidationSchema = Joi.object({
     .required()
     .label("Phone"),
   password: Joi.string().required().min(6).max(128).label("Password"),
-  license: Joi.string().optional().allow("").label("License"),
 });
 
 const validateUser = (userInput) => {
